@@ -1,26 +1,41 @@
 package autoFramework;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
-
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class MainClass
 {
-	static XSSFCell Cell;
+	
 	
 	public static String Celldata = null;
 	
-	static Action key;
-	
+	static Object key;
+	public static Method[] method;
 	static String cellData;
+	static XSSFCell Cell;
+	static String objectName ;
 	
-	public static void main(String[] args) 
+	static String action ;
+	
+	static String Value ;
+	static String objectN;
+	
+	static String objpath;
+	
+	
+	public static void primary() throws InterruptedException, IOException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
-		try {
+		
 			String spath = "D:\\Selenium\\eclipse-workspace\\NewProjectSelenium\\KeyExcel.xlsx";
 			
 			FileInputStream fis = new FileInputStream(spath);
@@ -38,41 +53,94 @@ public class MainClass
 								
 			System.out.println("rowCount: " + rowCount);
 			System.out.println("Colcount: " + ColCount);
+									
 			
-			for(int i = 0 ; i < rowCount ; i ++)
-			{
-							
-			String action =	Sheet.getRow(i).getCell(0).getStringCellValue();
-			
-			System.out.println(action);
-			String object = Sheet.getRow(i).getCell(1).getStringCellValue();
-			
-			System.out.println(object);
-			String objpath= Sheet.getRow(i).getCell(2).getStringCellValue();
-
-			System.out.println(objpath);
-			Action.act(action, object , objpath );
-			
-				/*for(int j = 0 ; j < ColCount ; j ++)
+			for(int i = 1 ; i <= rowCount ; i ++)
 				{
-					Cell = Sheet.getRow(i).getCell(j);					
-					System.out.println(Cell);
-					
-					cellData = Cell.toString();				
-					
-					
-					Action.act(action, object , objpath );
-				}*/
-			
-			}
 							
-				wb.close();		
-			} 
-		catch (Exception e) 
-		{			
-			e.printStackTrace();
+				action = Sheet.getRow(i).getCell(0).getStringCellValue();
+			
+				System.out.println(action);
+				objectName = Sheet.getRow(i).getCell(1).getStringCellValue();
+				System.out.println(objectName);
+				
+				
+				Value= Sheet.getRow(i).getCell(2).getStringCellValue();
+	
+				System.out.println(Value);
+					
+					String spathObj = "D:\\Selenium\\eclipse-workspace\\NewProjectSelenium\\Objectrepo.xlsx";
+					
+					FileInputStream fisObj = new FileInputStream(spathObj);
+					
+					XSSFWorkbook wbObj = new XSSFWorkbook(fisObj);
+					
+					XSSFSheet SheetObj = wbObj.getSheet("Sheet1");
+					
+					int rowC = SheetObj.getLastRowNum();
+					//rowCount = rowCount + 1;
+					
+					Row row1 = SheetObj.getRow(0);
+							
+					int ColC = row1.getLastCellNum();
+										
+					System.out.println("Object repo sheet rowCount: " + rowC);
+					System.out.println("Object repo sheet Colcount: " + ColC);
+					
+					for(int j = 1; j <= rowC ;)
+					{
+											
+						objectN = SheetObj.getRow(j).getCell(0).getStringCellValue();
+						
+						objpath = SheetObj.getRow(j).getCell(1).getStringCellValue();
+							
+						System.out.println(objectN +"  "+ objpath  );
+				
+							if(objectName.equals(objectN))
+							{
+								compare();
+								break;
+							}
+							else 
+							{
+								j++;
+							}
+					}
+				}
 		}
+		
+		private static void compare() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, InterruptedException 
+		{
+			key = new Object();
+			
+			method = key.getClass().getMethods();
+			
+			
+			for(int i = 0;i<method.length;i++)
+			 {
+				System.out.println(method[i]);
+				 if(method[i].getName().equals(action))
+				 {
+					 //objectRepo();
+					 Action.act(action, objectName , objpath, Value);
+					 break;
+				 }
+			 }
+		}
+	
+					
+	public static void main(String[] args) throws IOException, InterruptedException 
+			{
+				
+				try
+				{
+					primary();
+				} 
+				catch (Exception e) 
+				{
+					e.printStackTrace();
+				}
+				
+			}
 
 	}
-
-}
