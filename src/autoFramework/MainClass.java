@@ -16,23 +16,14 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class MainClass
 {
 	
-	
-	public static String Celldata = null;
-	
-	static Object key;
+	public static String objectName ;	
+	public static String action ;	
+	public static String Value ;
+	public static String objectN;	
+	public static String objpath;
+	public static Object key;
 	public static Method[] method;
-	static String cellData;
-	static XSSFCell Cell;
-	static String objectName ;
-	
-	static String action ;
-	
-	static String Value ;
-	static String objectN;
-	
-	static String objpath;
-	
-	
+	public static String sheetName;
 	public static void primary() throws InterruptedException, IOException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
 		
@@ -42,8 +33,14 @@ public class MainClass
 			
 			XSSFWorkbook wb = new XSSFWorkbook(fis);
 			
-			XSSFSheet Sheet = wb.getSheet("Sheet1");
-					
+			XSSFSheet Sheet = wb.getSheetAt(0);
+		
+			sheetName = Sheet.getSheetName();
+			System.out.println(sheetName);
+			
+		// To get sheetName of Test script sheet and compare with Test Suite sheet 
+			testSuite.readTestSuite(sheetName);
+			
 			int rowCount = Sheet.getLastRowNum();
 			//rowCount = rowCount + 1;
 			
@@ -76,6 +73,7 @@ public class MainClass
 					XSSFWorkbook wbObj = new XSSFWorkbook(fisObj);
 					
 					XSSFSheet SheetObj = wbObj.getSheet("Sheet1");
+					
 					
 					int rowC = SheetObj.getLastRowNum();
 					//rowCount = rowCount + 1;
@@ -134,6 +132,7 @@ public class MainClass
 				
 				try
 				{
+					
 					primary();
 				} 
 				catch (Exception e) 
