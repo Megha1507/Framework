@@ -46,6 +46,7 @@ public class testSuite
 			if(Run_Flag.equals("Y"))
 			{
 				MainClass.primary(TestSheet_Name);
+				i++;
 			}
 			else if(Run_Flag.equals("N"))
 			{

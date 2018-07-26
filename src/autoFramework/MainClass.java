@@ -1,15 +1,10 @@
 package autoFramework;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -29,7 +24,7 @@ public class MainClass
 	public static XSSFWorkbook wbObj;
 	public static String ORSheetNameValue;
 	public static XSSFSheet SheetObj ;
-	
+	public static String ORSheN;
 	
 	public static void primary(String sheetN) throws InterruptedException, IOException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
@@ -69,21 +64,31 @@ public class MainClass
 				
 				objectRe(ORSheetNameValue);
 				
-			for(int i = 3 ; i <= rowCount ; i ++)
+				if(ORSheN.equals(ORSheetNameValue))
 				{
-							
-				action = Sheet.getRow(i).getCell(0).getStringCellValue();
-			
-				System.out.println(action);
-				objectName = Sheet.getRow(i).getCell(1).getStringCellValue();
-				System.out.println(objectName);
+					for(int i = 3 ; i <= rowCount ; i ++)
+					{
+								
+					action = Sheet.getRow(i).getCell(0).getStringCellValue();
 				
-				Value= Sheet.getRow(i).getCell(2).getStringCellValue();
-	
-				System.out.println(Value);
-				
-				getObjectRepoVar(objectName);
+					System.out.println(action);
+					objectName = Sheet.getRow(i).getCell(1).getStringCellValue();
+					System.out.println(objectName);
+					
+					Value= Sheet.getRow(i).getCell(2).getStringCellValue();
+		
+					System.out.println(Value);
+					
+					getObjectRepoVar(objectName);
+					}
+					
 				}
+				else
+					{
+					
+					exit();
+					
+					}
 			}
 			else
 			{
@@ -103,24 +108,29 @@ public class MainClass
 				
 			SheetObj =  wbObj.getSheetAt(0);
 			
-			for(int i = 0 ; i < wbObj.getNumberOfSheets() ; i ++)
+			for(int i = 0 ; i < wbObj.getNumberOfSheets() ; )
 			{
 			ORsheetname = wbObj.getSheetName(i);
 			
 				if(ORsheetname.equals(ORSheetNameValue))
 				{
 					// Go back to test case sheet and increment
-					System.out.println("OR sheet found");
 					
+					System.out.println(ORsheetname + "and " + ORSheetNameValue + "OR sheet found");
+					ORSheN = ORSheetNameValue;
 					break;
 					// Start reading variables of Test Case sheet and OR sheet
 					//getObjectRepoVar(objectNM);
 				}
 				else
 				{
-					System.out.println("Sheet not found");
-					break;
+					
+					System.out.println(ORSheetNameValue + " and " + ORsheetname + " doesnt match." + " Sheet not found");
+					i++;
+					ORSheN = "ORsheet Not Found";
+					
 				}
+				
 				
 			}
 		}	
@@ -185,10 +195,8 @@ public class MainClass
 			{
 				
 				try
-				{
-					
-					testSuite.readTestSuite();
-					
+				{					
+					testSuite.readTestSuite();					
 				} 
 				catch (Exception e) 
 				{
