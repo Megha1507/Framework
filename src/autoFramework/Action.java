@@ -24,10 +24,13 @@ public class Action
 		else if(action.equals("click"))
 		{
 			Thread.sleep(3000);
+			
 			Object.click(objpath);
 		}
 		else if(action.equals("type"))
 		{
+			Thread.sleep(3000);
+			
 			Object.type(objpath , value);
 		}
 	}	

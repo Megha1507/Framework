@@ -18,41 +18,41 @@ public class testSuite
 	
 	static LinkedHashMap<String,String> hm = new LinkedHashMap<String,String>();
 	
-	public static void readTestSuite(String sheetName) throws IOException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InterruptedException
+	public static void readTestSuite() throws IOException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InterruptedException
 	{
-	String fileP= "D:\\Selenium\\eclipse-workspace\\NewProjectSelenium\\TestSuite.xlsx";
-	FileInputStream fis = new FileInputStream(fileP);
+		String fileP= "D:\\Selenium\\eclipse-workspace\\NewProjectSelenium\\TestSuite.xlsx";
+		
+		FileInputStream fis = new FileInputStream(fileP);
+		
+		XSSFWorkbook w = new XSSFWorkbook(fis);
+		
+		XSSFSheet Sheet = w.getSheet("Sheet1");
+		
+		int ORrow = Sheet.getLastRowNum();
 	
-	XSSFWorkbook w = new XSSFWorkbook(fis);
-	
-	XSSFSheet Sheet = w.getSheet("Sheet1");
-	
-	int ORrow = Sheet.getLastRowNum();
-
-	row = Sheet.getRow(0);
-	
-	int Col = row.getLastCellNum();
-	
-	System.out.println("col count" + Col);	
-	System.out.println("row count" + ORrow);
-	
-	for(int i = 1 ; i <= ORrow ; i++)
-	{
+		row = Sheet.getRow(0);
+		
+		int Col = row.getLastCellNum();
+		
+		System.out.println("col count" + Col);	
+		System.out.println("row count" + ORrow);
+		
+		for(int i = 1 ; i <= ORrow ; )
+		{
 		
 			Run_Flag = Sheet.getRow(i).getCell(0).getStringCellValue();
-			TestSheet_Name = Sheet.getRow(i).getCell(1).getStringCellValue();;
-			compareName(Run_Flag, TestSheet_Name ,sheetName );
-		
-	}
-}
-
-	private static void compareName(String run_Flag, String testSheet_Name, String sheetName) 
-	{
-		if(Run_Flag.equals("Y") && TestSheet_Name.equals(sheetName))
-		{
-			return;
+			TestSheet_Name = Sheet.getRow(i).getCell(1).getStringCellValue();
+			
+			if(Run_Flag.equals("Y"))
+			{
+				MainClass.primary(TestSheet_Name);
+			}
+			else if(Run_Flag.equals("N"))
+			{
+				i++;
+			}
+	
 		}
-		
 	}
 }		
 	
