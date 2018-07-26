@@ -21,68 +21,71 @@ public class MainClass
 	public static String sheetName;
 	public static String ORsheetName;
 	public static String ORsheetname;
-	public static XSSFWorkbook wbObj;
+	public static XSSFWorkbook Obj_repo_wb;
 	public static String ORSheetNameValue;
 	public static XSSFSheet SheetObj ;
-	public static String ORSheN;
+	public static String obj_sheetname;
 	
-	public static void primary(String sheetN) throws InterruptedException, IOException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
+	// This function is reading the TestScript Sheet
+	public static void testScript(String testSheetName) throws InterruptedException, IOException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
 		
-			String spath = "D:\\Selenium\\eclipse-workspace\\NewProjectSelenium\\KeyExcel.xlsx";
+			String testScriptPath = "D:\\Selenium\\eclipse-workspace\\NewProjectSelenium\\TestScript.xlsx";
 			
-			FileInputStream fis = new FileInputStream(spath);
+			FileInputStream testScriptfis = new FileInputStream(testScriptPath);
 			
-			XSSFWorkbook wb = new XSSFWorkbook(fis);
+			XSSFWorkbook testScriptWb = new XSSFWorkbook(testScriptfis);
 			
-			XSSFSheet Sheet = wb.getSheetAt(0);
+			XSSFSheet Sheet = testScriptWb.getSheetAt(0);
 		
-			sheetName = Sheet.getSheetName();
-			System.out.println(sheetName);
+				sheetName = Sheet.getSheetName();
+				System.out.println("TestScript sheetName = " + sheetName);
 							
-			int rowCount = Sheet.getLastRowNum();
-			//rowCount = rowCount + 1;
+			int testScriptRows = Sheet.getLastRowNum();
 			
-			Row row = Sheet.getRow(0);
+			//Row row = Sheet.getRow(0);
 			
-			int ColCount = row.getLastCellNum();
+			//int testScriptCols = row.getLastCellNum();
 								
-			System.out.println("rowCount: " + rowCount);
-			System.out.println("Colcount: " + ColCount);
+				System.out.println("TestScript row count: " + testScriptRows);
+				//System.out.println("TestScript Col count: " + testScriptCols);
 			
-			// To compare Name of Test case Sheet in Testsuite and Testcase Sheet Name 
-			if(sheetN.equals(sheetName))
-			{
-				
-			// Fetching ObjectRepo name from Test Case sheet
-				
-				String ORSheetName = Sheet.getRow(1).getCell(0).getStringCellValue();
-				
-				ORSheetNameValue = Sheet.getRow(1).getCell(1).getStringCellValue();
-				
-				System.out.println(ORSheetName + ", "+ ORSheetNameValue);
-				
-				objectRe(ORSheetNameValue);
-				
-				if(ORSheN.equals(ORSheetNameValue))
+		// This loop checks if the Test Case name matches
+				if(testSheetName.equals(sheetName))
 				{
-					for(int i = 3 ; i <= rowCount ; i ++)
+				
+		// Read Object Repo Sheet name Linked in TestScipt
+				
+					String ORSheetName = Sheet.getRow(1).getCell(0).getStringCellValue();
+					
+					ORSheetNameValue = Sheet.getRow(1).getCell(1).getStringCellValue();
+				
+					System.out.println(ORSheetName + ", "+ ORSheetNameValue);
+				
+					objectRepoScript(ORSheetNameValue);
+				
+		// Checking if Object Repo Sheet linked in Test Case Sheet is available in Object Repo workbook.
+				
+				if(obj_sheetname.equals(ORSheetNameValue))
+				{
+					for(int i = 3 ; i <= testScriptRows ; i ++)
 					{
 								
-					action = Sheet.getRow(i).getCell(0).getStringCellValue();
-				
-					System.out.println(action);
+					action = Sheet.getRow(i).getCell(0).getStringCellValue();				
+					System.out.println("action = " + action);
+					
 					objectName = Sheet.getRow(i).getCell(1).getStringCellValue();
-					System.out.println(objectName);
+					System.out.println("objectName= " + objectName);
 					
 					Value= Sheet.getRow(i).getCell(2).getStringCellValue();
 		
-					System.out.println(Value);
+					System.out.println("Value = " + Value);
 					
 					getObjectRepoVar(objectName);
 					}
 					
 				}
+		// If Linked Object Repo Sheet doesn't match with any sheet of the Object Repo Workbook then this loop will execute and end the Execution.
 				else
 					{
 					
@@ -92,49 +95,54 @@ public class MainClass
 			}
 			else
 			{
-				System.out.println("Sheet doesnt exist. Please check SheetName");
+				System.out.println("TestScript doesnt exist. Please check Sheet Name");
 				exit();
 			}
+				testScriptWb.close();
 		}
 			
+	//This Method is to read  the Object Repo Sheet 
 	
-	public static void objectRe(String ORSheetNameValue) throws IOException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InterruptedException
+	public static void objectRepoScript(String ORSheetNameValue) throws IOException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InterruptedException
 		{
-			String spathObj = "D:\\Selenium\\eclipse-workspace\\NewProjectSelenium\\Objectrepo.xlsx";
+			String objRepoPath = "D:\\Selenium\\eclipse-workspace\\NewProjectSelenium\\Objectrepo.xlsx";
 			
-			FileInputStream fisObj = new FileInputStream(spathObj);
+			FileInputStream Obj_fis = new FileInputStream(objRepoPath);
 				
-			wbObj = new XSSFWorkbook(fisObj);
+			Obj_repo_wb = new XSSFWorkbook(Obj_fis);
 				
-			SheetObj =  wbObj.getSheetAt(0);
+			SheetObj =  Obj_repo_wb.getSheetAt(0);
 			
-			for(int i = 0 ; i < wbObj.getNumberOfSheets() ; )
+			// This loop is to search the Object Repo Sheet linked with Test Script. Comparing the Object Repo Sheet Names
+				
+			for(int i = 0 ; i < Obj_repo_wb.getNumberOfSheets() ; )
+				
 			{
-			ORsheetname = wbObj.getSheetName(i);
-			
+			ORsheetname = Obj_repo_wb.getSheetName(i);
+				
 				if(ORsheetname.equals(ORSheetNameValue))
 				{
 					// Go back to test case sheet and increment
 					
-					System.out.println(ORsheetname + "and " + ORSheetNameValue + "OR sheet found");
-					ORSheN = ORSheetNameValue;
+					System.out.println(ORsheetname + " and " + ORSheetNameValue + " Object Repo sheet found");
+					
+					obj_sheetname = ORSheetNameValue;
+					
 					break;
-					// Start reading variables of Test Case sheet and OR sheet
-					//getObjectRepoVar(objectNM);
 				}
 				else
 				{
 					
 					System.out.println(ORSheetNameValue + " and " + ORsheetname + " doesnt match." + " Sheet not found");
 					i++;
-					ORSheN = "ORsheet Not Found";
+					obj_sheetname = "Object Repo sheet Not Found";
 					
-				}
-				
-				
+				}		
 			}
 		}	
-	private static void compare() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, InterruptedException 
+	
+	// This Method is to retrieve all "Methods" of class "Object" and compare with action values present in TestScript
+	private static void getObjMethods() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, InterruptedException 
 		{
 			key = new Object();
 			
@@ -143,7 +151,7 @@ public class MainClass
 			
 			for(int i = 0;i<method.length;i++)
 			 {
-				System.out.println(method[i]);
+				//System.out.println(method[i]);
 				 if(method[i].getName().equals(action))
 				 {
 					 //objectRepo();
@@ -153,18 +161,18 @@ public class MainClass
 			 }
 		}
 			
-	private static void getObjectRepoVar(String objectNM) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, InterruptedException 
+	private static void getObjectRepoVar(String testScriptObjectName) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, InterruptedException 
 	{
-		int rowC = SheetObj.getLastRowNum();
+		int objectRepoRows = SheetObj.getLastRowNum();
 		
-		Row row1 = SheetObj.getRow(0);
+		//Row row1 = SheetObj.getRow(0);
 					
-		int ColC = row1.getLastCellNum();
+		//int objectRepoCol = row1.getLastCellNum();
 		
-		System.out.println("Object repo sheet rowCount: " + rowC);
-		System.out.println("Object repo sheet Colcount: " + ColC);	
+		System.out.println("Object repo sheet rowCount: " + objectRepoRows);
+		//System.out.println("Object repo sheet Colcount: " + objectRepoCol);	
 		
-		for(int j = 1; j <= rowC ;)
+		for(int j = 1; j <= objectRepoRows ;)
 		{
 								
 			objectN = SheetObj.getRow(j).getCell(0).getStringCellValue();
@@ -173,9 +181,9 @@ public class MainClass
 				
 			System.out.println(objectN +"  "+ objpath  );
 	
-				if(objectName.equals(objectN))
+				if(testScriptObjectName.equals(objectN))
 				{
-					compare();
+					getObjMethods();
 					break;
 				}
 				else 
@@ -196,7 +204,7 @@ public class MainClass
 				
 				try
 				{					
-					testSuite.readTestSuite();					
+					TestSuite.readTestSuite();					
 				} 
 				catch (Exception e) 
 				{

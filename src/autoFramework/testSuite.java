@@ -8,7 +8,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class testSuite 
+public class TestSuite 
 {
 	static Row row ;
 	public static String celldata;
@@ -20,32 +20,32 @@ public class testSuite
 	
 	public static void readTestSuite() throws IOException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InterruptedException
 	{
-		String fileP= "D:\\Selenium\\eclipse-workspace\\NewProjectSelenium\\TestSuite.xlsx";
+		String testSuitePath= "D:\\Selenium\\eclipse-workspace\\NewProjectSelenium\\TestSuite.xlsx";
 		
-		FileInputStream fis = new FileInputStream(fileP);
+		FileInputStream testSuitefis = new FileInputStream(testSuitePath);
 		
-		XSSFWorkbook w = new XSSFWorkbook(fis);
+		XSSFWorkbook testSuiteWb = new XSSFWorkbook(testSuitefis);
 		
-		XSSFSheet Sheet = w.getSheet("Sheet1");
+		XSSFSheet testSuiteSheet = testSuiteWb.getSheet("Sheet1");
 		
-		int ORrow = Sheet.getLastRowNum();
+		int testSuiteRow = testSuiteSheet.getLastRowNum();
 	
-		row = Sheet.getRow(0);
+		//row = testSuiteSheet.getRow(0);
 		
-		int Col = row.getLastCellNum();
+		//int testSuiteCol = row.getLastCellNum();
 		
-		System.out.println("col count" + Col);	
-		System.out.println("row count" + ORrow);
+		//System.out.println("TestSuite col count = " + testSuiteCol);	
+		System.out.println("TestSuite row count = " + testSuiteRow);
 		
-		for(int i = 1 ; i <= ORrow ; )
+		for(int i = 1 ; i <= testSuiteRow ; )
 		{
 		
-			Run_Flag = Sheet.getRow(i).getCell(0).getStringCellValue();
-			TestSheet_Name = Sheet.getRow(i).getCell(1).getStringCellValue();
+			Run_Flag = testSuiteSheet.getRow(i).getCell(0).getStringCellValue();
+			TestSheet_Name = testSuiteSheet.getRow(i).getCell(1).getStringCellValue();
 			
 			if(Run_Flag.equals("Y"))
 			{
-				MainClass.primary(TestSheet_Name);
+				MainClass.testScript(TestSheet_Name);
 				i++;
 			}
 			else if(Run_Flag.equals("N"))
@@ -54,6 +54,7 @@ public class testSuite
 			}
 	
 		}
+		testSuiteWb.close();
 	}
 }		
 	
