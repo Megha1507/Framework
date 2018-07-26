@@ -1,12 +1,14 @@
 package autoFramework;
 
 import java.io.FileInputStream;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedHashMap;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.testng.annotations.Test;
+
+
+@Test(priority =1 )
 
 public class TestSuite 
 {
@@ -18,7 +20,7 @@ public class TestSuite
 	
 	static LinkedHashMap<String,String> hm = new LinkedHashMap<String,String>();
 	
-	public static void readTestSuite() throws IOException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InterruptedException
+	public static void readTestSuite() throws Exception
 	{
 		String testSuitePath= "D:\\Selenium\\eclipse-workspace\\NewProjectSelenium\\TestSuite.xlsx";
 		
@@ -54,6 +56,7 @@ public class TestSuite
 			}
 	
 		}
+		
 		testSuiteWb.close();
 	}
 }		

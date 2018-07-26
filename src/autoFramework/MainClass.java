@@ -4,9 +4,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+
 
 public class MainClass
 {
@@ -26,8 +27,9 @@ public class MainClass
 	public static XSSFSheet SheetObj ;
 	public static String obj_sheetname;
 	
+	//@Test(priority =2 )
 	// This function is reading the TestScript Sheet
-	public static void testScript(String testSheetName) throws InterruptedException, IOException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
+	public static void testScript(String testSheetName) throws Exception
 	{
 		
 			String testScriptPath = "D:\\Selenium\\eclipse-workspace\\NewProjectSelenium\\TestScript.xlsx";
@@ -142,7 +144,7 @@ public class MainClass
 		}	
 	
 	// This Method is to retrieve all "Methods" of class "Object" and compare with action values present in TestScript
-	private static void getObjMethods() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, InterruptedException 
+	private static void getObjMethods() throws Exception 
 		{
 			key = new Object();
 			
@@ -161,7 +163,7 @@ public class MainClass
 			 }
 		}
 			
-	private static void getObjectRepoVar(String testScriptObjectName) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, InterruptedException 
+	private static void getObjectRepoVar(String testScriptObjectName) throws Exception 
 	{
 		int objectRepoRows = SheetObj.getLastRowNum();
 		
@@ -179,7 +181,7 @@ public class MainClass
 			
 			objpath = SheetObj.getRow(j).getCell(1).getStringCellValue();
 				
-			System.out.println(objectN +"  "+ objpath  );
+			//System.out.println(objectN +"  "+ objpath  );
 	
 				if(testScriptObjectName.equals(objectN))
 				{
@@ -198,19 +200,4 @@ public class MainClass
 	{
 		System.exit(0);
 	}
-
-	public static void main(String[] args) throws IOException, InterruptedException 
-			{
-				
-				try
-				{					
-					TestSuite.readTestSuite();					
-				} 
-				catch (Exception e) 
-				{
-					e.printStackTrace();
-				}
-				
-			}
-
 	}

@@ -22,17 +22,27 @@ public class Object
 			driver.manage().window().maximize();
 		}
 	}
-	public static void navigate(String objpath) 
+	public static void navigate(String objpath) throws Exception 
 	{
-		driver.get(objpath);		
+		try {
+			driver.get(objpath);
+		} catch (Exception e) {
+			CaptureScreenshot.getscreenshot();
+		}		
 	}
 	public static void click(String objpath )
 	{
 		driver.findElement(By.xpath(objpath)).click();
 	}
-	public static void type(String objpath, String value)
+	public static void type(String objpath, String value) throws Exception
 	{
-		driver.findElement(By.xpath(objpath)).sendKeys(value);
+		try {
+			driver.findElement(By.xpath(objpath)).sendKeys(value);
+		} catch (Exception e) {
+			
+			CaptureScreenshot.getscreenshot();
+
+		}
 	}
 		
 }
