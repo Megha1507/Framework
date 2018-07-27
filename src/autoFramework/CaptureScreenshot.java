@@ -21,10 +21,10 @@ public class CaptureScreenshot extends Object
 			
 			String filename =  new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss").format(new Date());
             File dest = new File("D:\\Selenium\\eclipse-workspace\\NewProjectSelenium\\FailureScreenshots\\" + filename + ".png");
-
-			//The below method will save the screen shot in d drive with name "screenshot.png"
+                    			
+            //The below method will save the screen shot in d drive with name "screenshot.png"
             FileUtils.copyFile(scrFile, dest);
-            
+            logger.info("Screenshot is captured and saved successfully.");
             
                 }
 }

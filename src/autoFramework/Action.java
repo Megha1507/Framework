@@ -1,17 +1,12 @@
 package autoFramework;
 
-import java.io.File;
-
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.apache.log4j.Logger;
 
 public class Action 
 {
-	//public static WebDriver driver;
 	public static Object key;
-	//static Object ob = new Object();
+	static Logger logger =  Logger.getLogger("Action");
+	
 	public static void act(String action,String object , String objpath, String value) throws Exception
 	{
 		
@@ -19,12 +14,16 @@ public class Action
 			if(action.equals("openBrowser"))
 			{			
 				Object.openBrowser(objpath);
+				
+				logger.info("openBrowser ");
 			}
 
 			else if(action.equals("navigate"))
 			{
 				
 				Object.navigate(objpath);
+				
+				logger.info("navigate");
 			
 			}
 			else if(action.equals("click"))
@@ -32,16 +31,22 @@ public class Action
 				Thread.sleep(3000);
 				
 				Object.click(objpath);
+				
+				logger.info("click");
+				
 			}
 			else if(action.equals("type"))
 			{
 				Thread.sleep(3000);
 				
 				Object.type(objpath , value);
+				
+				logger.info("type");
 			}
 		} 
 		catch (Exception e) 
 		{
+			logger.info("act method throws EXCEPTION");
 			e.printStackTrace();
 		}
 	}	

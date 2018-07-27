@@ -1,0 +1,52 @@
+2018-07-27 17:03:05,210 [main] INFO TestSuite - ----------------Beginning of TestSuite.xlsx Excel sheet----------------
+2018-07-27 17:03:05,220 [main] INFO TestSuite - TestSuite.xlsx sheet at location: D:\Selenium\eclipse-workspace\NewProjectSelenium\TestSuite.xlsx
+2018-07-27 17:03:05,731 [main] INFO TestSuite - Run_Flag is : Y and TestSheet_Name is :  TC_01 found
+2018-07-27 17:03:05,731 [main] INFO MainClass - Accessing Log file in Main Class
+2018-07-27 17:03:05,731 [main] INFO MainClass - Beginning of TestScript.xlsx Excel sheet
+2018-07-27 17:03:05,781 [main] INFO MainClass - Counting no. of Rows in TestScript.xlsx : 6
+2018-07-27 17:03:05,781 [main] INFO MainClass - TestScript Found . Comparing TestScript Sheet name
+2018-07-27 17:03:05,781 [main] INFO MainClass - Accessing ObjectRepo Script
+2018-07-27 17:03:05,811 [main] INFO MainClass - Fetching all the Sheets under Object Repo.xlsx
+2018-07-27 17:03:05,811 [main] INFO MainClass - Searching for the Object Repo Sheet specified in Test Script
+2018-07-27 17:03:05,821 [main] INFO MainClass - Object Repo Sheet Found
+2018-07-27 17:03:05,821 [main] INFO MainClass - Cheching for the Linked ObjectRepo Sheet
+2018-07-27 17:03:05,821 [main] INFO MainClass - Accessing TestCase Variables in TestScript
+2018-07-27 17:03:05,821 [main] INFO MainClass - Counting no. of ObjectRepo Script Rows : 4
+2018-07-27 17:03:05,821 [main] INFO MainClass - Accessing ObjectRepo_Sheet Variable
+2018-07-27 17:03:05,821 [main] INFO MainClass - ObjectRepo name is compared successfully.
+2018-07-27 17:03:05,821 [main] INFO MainClass - Accessing all the methods of Class Object
+2018-07-27 17:03:13,604 [main] INFO Object - Open Firefox Browser
+2018-07-27 17:03:13,604 [main] INFO Action - openBrowser 
+2018-07-27 17:03:13,604 [main] INFO MainClass - Accessing TestCase Variables in TestScript
+2018-07-27 17:03:13,604 [main] INFO MainClass - Counting no. of ObjectRepo Script Rows : 4
+2018-07-27 17:03:13,604 [main] INFO MainClass - Accessing ObjectRepo_Sheet Variable
+2018-07-27 17:03:13,604 [main] INFO MainClass - Accessing ObjectRepo_Sheet Variable
+2018-07-27 17:03:13,604 [main] INFO MainClass - ObjectRepo name is compared successfully.
+2018-07-27 17:03:13,614 [main] INFO MainClass - Accessing all the methods of Class Object
+2018-07-27 17:03:20,088 [main] INFO Action - navigate
+2018-07-27 17:03:20,089 [main] INFO MainClass - Accessing TestCase Variables in TestScript
+2018-07-27 17:03:20,092 [main] INFO MainClass - Counting no. of ObjectRepo Script Rows : 4
+2018-07-27 17:03:20,092 [main] INFO MainClass - Accessing ObjectRepo_Sheet Variable
+2018-07-27 17:03:20,093 [main] INFO MainClass - Accessing ObjectRepo_Sheet Variable
+2018-07-27 17:03:20,094 [main] INFO MainClass - Accessing ObjectRepo_Sheet Variable
+2018-07-27 17:03:20,094 [main] INFO MainClass - ObjectRepo name is compared successfully.
+2018-07-27 17:03:20,095 [main] INFO MainClass - Accessing all the methods of Class Object
+2018-07-27 17:03:23,425 [main] INFO Action - click
+2018-07-27 17:03:23,425 [main] INFO MainClass - Accessing TestCase Variables in TestScript
+2018-07-27 17:03:23,425 [main] INFO MainClass - Counting no. of ObjectRepo Script Rows : 4
+2018-07-27 17:03:23,425 [main] INFO MainClass - Accessing ObjectRepo_Sheet Variable
+2018-07-27 17:03:23,425 [main] INFO MainClass - Accessing ObjectRepo_Sheet Variable
+2018-07-27 17:03:23,425 [main] INFO MainClass - Accessing ObjectRepo_Sheet Variable
+2018-07-27 17:03:23,425 [main] INFO MainClass - Accessing ObjectRepo_Sheet Variable
+2018-07-27 17:03:23,425 [main] INFO MainClass - ObjectRepo name is compared successfully.
+2018-07-27 17:03:23,425 [main] INFO MainClass - Accessing all the methods of Class Object
+2018-07-27 17:03:26,640 [main] INFO Object - Screenshot is captured and saved successfully.
+2018-07-27 17:03:26,640 [main] INFO Object - Type method Failed
+2018-07-27 17:03:26,640 [main] INFO Action - type
+2018-07-27 17:03:26,640 [main] INFO TestSuite - Run_Flag status : Y and accessingTC_01
+2018-07-27 17:03:26,640 [main] INFO TestSuite - Run_Flag is : Y and TestSheet_Name is :  TC_02 found
+2018-07-27 17:03:26,640 [main] INFO MainClass - Accessing Log file in Main Class
+2018-07-27 17:03:26,650 [main] INFO MainClass - Beginning of TestScript.xlsx Excel sheet
+2018-07-27 17:03:26,722 [main] INFO MainClass - Counting no. of Rows in TestScript.xlsx : 6
+2018-07-27 17:03:26,722 [main] INFO MainClass - TestScript Not Found
+2018-07-27 17:03:26,726 [main] INFO MainClass - Program Terminated
