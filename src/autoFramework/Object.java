@@ -31,7 +31,7 @@ public class Object
 			}
 		} 
 		catch (Exception e) 
-		{
+		{ 
 			CaptureScreenshot.getscreenshot();
 			logger.info("Failed to Open Browser");
 		}
@@ -75,7 +75,7 @@ public class Object
 		{
 			CaptureScreenshot.getscreenshot();
 			
-			logger.info("Type method Failed");
+			logger.info("Type method Failed" + " , " + objpath + " , " + value );
 		}
 	}
 		

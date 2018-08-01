@@ -62,17 +62,16 @@ public class TestSuite
 			
 			if(Run_Flag.equals("Y"))
 			{
-				MainClass.testScript(TestSheet_Name);
-				logger.info("Run_Flag status : " + Run_Flag + " and accessing" +TestSheet_Name);
-			
+				TestScript.testScript(TestSheet_Name);
+								
 			}
-			/*else if(Run_Flag.equals("N"))
+			else if(Run_Flag.equals("N"))
 			{
 				i++;
-			}*/
+			}
 	
 		}
-		testSuiteWb.close();
+		//testSuiteWb.close();
 		logger.info("----------------Execution ENDED----------------");
 	}	
 }	

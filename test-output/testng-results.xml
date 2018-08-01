@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="0" passed="0">
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="7" started-at="2018-07-27T10:19:10Z" finished-at="2018-07-27T10:19:10Z">
+  <suite name="Default suite" duration-ms="67641" started-at="2018-08-01T07:20:26Z" finished-at="2018-08-01T07:21:34Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="7" started-at="2018-07-27T10:19:10Z" finished-at="2018-07-27T10:19:10Z">
+    <test name="Default test" duration-ms="67641" started-at="2018-08-01T07:20:26Z" finished-at="2018-08-01T07:21:34Z">
+      <class name="autoFramework.TestSuite">
+        <test-method status="PASS" signature="readTestSuite()[pri:1, instance:autoFramework.TestSuite@475530b9]" name="readTestSuite" duration-ms="67604" started-at="2018-08-01T07:20:26Z" finished-at="2018-08-01T07:21:34Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- readTestSuite -->
+      </class> <!-- autoFramework.TestSuite -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
